@@ -1,0 +1,59 @@
+:root {
+    --chipMenuHeight: 75px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.chip-menu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    height: var(--chipMenuHeight);
+    background-color: #888;
+}
+
+.menu-chip {
+    width: var(--chipMenuHeight);
+    line-height: var(--chipMenuHeight);
+    text-align: center;
+    font-size: 24px;
+    height: var(--chipMenuHeight);
+}
+
+.menu-chip:hover {
+    cursor: pointer;
+    background-color: #777;
+}
+
+.chip-count-block {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(1.75 * var(--chipMenuHeight));
+    height: calc(1.5 * var(--chipMenuHeight));
+    background-color: #888;
+    line-height: calc(1.5 * var(--chipMenuHeight));
+    font-size: 24px;
+    text-align: center;
+}
+
+#table-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/table_texture.jpg');
+    background-size: 100% 100%;
+    z-index: -1000;
+}
+
+/*--------------------*/
+
