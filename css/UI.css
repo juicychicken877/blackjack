@@ -7,7 +7,11 @@
     margin: 0;
 }
 
-.chip-menu {
+#UI {
+    z-index: 0;
+}
+
+#chip-menu {
     position: absolute;
     display: flex;
     align-items: center;
@@ -19,17 +23,12 @@
     background-color: #888;
 }
 
-.menu-chip {
+.chip-menu-element {
     width: var(--chipMenuHeight);
     line-height: var(--chipMenuHeight);
     text-align: center;
     font-size: 24px;
     height: var(--chipMenuHeight);
-}
-
-.menu-chip:hover {
-    cursor: pointer;
-    background-color: #777;
 }
 
 .chip-count-block {
@@ -42,6 +41,49 @@
     line-height: calc(1.5 * var(--chipMenuHeight));
     font-size: 24px;
     text-align: center;
+}
+
+
+.chip-fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.chip-field {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}
+
+.main-field {
+    height: 100%;
+    width: 100%;
+    line-height: 100px;
+    font-size: 24px;
+    background-color: #888;
+}
+
+.clear-button {
+    display: none;
+    border: 1px solid black;
+    background-color: #d41308;
+    color: white;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.chip-field:hover > .clear-button {
+    display: block;
 }
 
 #table-texture {
