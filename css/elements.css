@@ -1,0 +1,13 @@
+#deal-button {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 170px;
+    height: 50px;
+    background-color: #888;
+    border: none;
+}
+
+#deal-button:hover {
+    background-color: lightblue;
+}
