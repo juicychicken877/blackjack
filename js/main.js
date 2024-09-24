@@ -1,4 +1,8 @@
 import { drawNthCard } from "./canvas.js";
+import { getShuffledDeck } from "./cards.js";
+
+// IMAGE SOURCES
+const CARDS_IMAGE_SRC = 'img/PNG/'
 
 // HTML ELEMENTS
 const CHIP_COUNT = document.getElementById('chip-count');
@@ -14,19 +18,19 @@ const CHIP_VALUES = [1000, 500, 250, 100, 50, 25, 10];
 
 let chipFields = [
     {
-        index: 0,
+        index: 1,
         MAIN_FIELD: document.getElementById('chip-field1').getElementsByClassName('main-field')[0],
         CLEAR_BUTTON: document.getElementById('chip-field1').getElementsByClassName('clear-button')[0],
         totalChipValue: 0,
     },
     {
-        index: 1,
+        index: 2,
         MAIN_FIELD: document.getElementById('chip-field2').getElementsByClassName('main-field')[0],
         CLEAR_BUTTON: document.getElementById('chip-field2').getElementsByClassName('clear-button')[0],
         totalChipValue: 0,
     },
     {
-        index: 2,
+        index: 3,
         MAIN_FIELD: document.getElementById('chip-field3').getElementsByClassName('main-field')[0],
         CLEAR_BUTTON: document.getElementById('chip-field3').getElementsByClassName('clear-button')[0],
         totalChipValue: 0,
@@ -36,6 +40,25 @@ let chipFields = [
 let chipCount = 1000;
 let chosenChipValue = 0;
 let chosenMenuElement = null;
+let deck = getShuffledDeck();
+let hiddenCard = null;
+
+function getImage(front, suit) {
+    // the pattern from image source is: value + uppercase first letter of suit e.g 4D, 7S
+    const EXTENSION = '.png';
+    let secondCharacter = '';
+
+    switch (suit) {
+        case 'Diamonds': secondCharacter = 'D'; break;
+        case 'Hearts': secondCharacter = 'H'; break;
+        case 'Spades': secondCharacter = 'S'; break;
+        case 'Clubs': secondCharacter = 'C'; break;
+    }
+
+    let finalString = CARDS_IMAGE_SRC + front + secondCharacter + EXTENSION;
+
+    return finalString;
+}
 
 // a function that starts the game fr
 function dealCards() {
@@ -52,19 +75,33 @@ function dealCards() {
     chosenMenuElement = null;
     chosenChipValue = 0;
 
+    // TEST
+    
     // deal first card
     chipFields.forEach(chipField => {
         if (chipField.totalChipValue > 0) {
-            drawNthCard(1, chipField.index);
+            let card = deck.getCard()
+            
+            drawNthCard(1, chipField.index, getImage(card.front, card.suit));
         }
     })
+
+    // dealer
+    let dealerCard1 = deck.getCard()
+    drawNthCard(1, 0, getImage(dealerCard1 .front, dealerCard1.suit));
 
     // deal second card
     chipFields.forEach(chipField => {
         if (chipField.totalChipValue > 0) {
-            drawNthCard(2, chipField.index);
+            let card = deck.getCard()
+            
+            drawNthCard(2, chipField.index, getImage(card.front, card.suit));
         }
     })
+
+    // dealer's hidden card
+    let hiddenCard = deck.getCard()
+    drawNthCard(2, 0, 'img/PNG/gray_back.png');
 }
 
 function addChipsToField(chipField) {
